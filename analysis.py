@@ -5,7 +5,7 @@ import os
 
 image_folder = "Training\Banana 1"
 all_files = os.listdir(image_folder)
-print(all_files)
+print(all_files[0])
 
 
 # image_files = [f"r0_{i}_100.jpg" for i in range(0, 100)]
