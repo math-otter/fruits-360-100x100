@@ -16,5 +16,8 @@ def load_images(image_folder):
             img = Image.open(image_path).convert("L")
             img_array = np.array(img)
             image_data.append(img_array)
-
-    return np.stack(image_data, axis=0)
+    
+    image_data = np.stack(image_data, axis=0)
+    image_data = (255 - image_data) / 255
+    
+    return image_data
