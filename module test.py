@@ -1,10 +1,8 @@
-import matplotlib.pyplot as plt
-from imgtoarray import load_images
+from imgtoarray import load_images, draw_images
 
 bananas = load_images("Training\Banana 1")
 apples = load_images("Training\Apple Red 1")
 
 print(bananas.shape)
 
-plt.imshow(apples[0], cmap="gray_r")
-plt.show()
+draw_images(bananas[0:8], ncols=4, ratio=3, titles=[n for n in range(8)], axis="on", cmap="gray")
