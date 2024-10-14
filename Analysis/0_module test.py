@@ -1,4 +1,4 @@
-from imgtoarray import load_images, draw_images
+from Analysis.imgtoarray import load_images, draw_images
 
 bananas = load_images("Training\Banana 1")
 apples = load_images("Training\Apple Red 1")
