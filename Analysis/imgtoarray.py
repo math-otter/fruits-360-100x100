@@ -61,4 +61,4 @@ def draw_images(arr_3d, ncols=None, ratio=1, titles=None, axis="off", cmap="gray
     # 이미지 저장 기능 추가
     if save != "off":
         plt.savefig(save, bbox_inches="tight", pad_inches=0)
-        print(f"이미지가 {save} 파일로 저장되었습니다.")
+        print(f"이미지가 {save}.png 파일로 저장되었습니다.")
