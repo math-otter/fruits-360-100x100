@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from imgtoarray import load_images
+from imgtoarray import load_images, draw_images
 
 # 데이터 로드
 apple = load_images("Training\Apple Braeburn 1")
@@ -16,9 +16,9 @@ cherry_means = np.mean(cherry, axis=(1, 2))
 
 # 배열 길이 조정 작업
 max_length = max(len(apple_means), len(banana_means), len(cherry_means))
-apple_means = np.concatenate((apple_means, [np.nan] * (max_length - len(apple_means))))
-banana_means = np.concatenate((banana_means, [np.nan] * (max_length - len(banana_means))))
-cherry_means = np.concatenate((cherry_means, [np.nan] * (max_length - len(cherry_means))))
+apple_means = np.concatenate((apple_means, [np.nan] * (max_length - len(apple_means))), axis=0)
+banana_means = np.concatenate((banana_means, [np.nan] * (max_length - len(banana_means))), axis=0)
+cherry_means = np.concatenate((cherry_means, [np.nan] * (max_length - len(cherry_means))), axis=0)
 # print(len(apple_means), len(banana_means), len(cherry_means)): 배열 길이가 맞는 것을 확인
 
 # 데이터 프레임 생성 작업
@@ -33,8 +33,15 @@ df = pd.DataFrame(dic)
 # 분포 시각화(히스토그램)
 for column in df.columns:
   plt.hist(df[column], label=column, alpha=0.8)
-plt.ylabel('frequency')
+plt.ylabel("frequency")
 plt.legend()
-plt.show()
+plt.savefig(r"Images\1_pixel mean histogram")
 # 픽셀의 평균값 만으로 바나나를 구별해낼 수 있음을 확인.
 # 사과와 체리는 비슷하여 분포에서 겹치는 부분이 존재함.
+
+# 픽셀의 평균값을 이용하여 모든 이미지에서 바나나만 골라내기
+fruit = np.concatenate((apple, banana, cherry), axis=0)
+mean = np.mean(fruit, axis=(1, 2))
+inf, sup = df["banana_means"].min(), df["banana_means"].max()
+banana1 = fruit[(mean >= inf) & (mean <= sup)]
+draw_images(banana1, ncols=50, show="off", save=r"Images\1_banana1")

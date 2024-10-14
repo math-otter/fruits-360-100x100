@@ -23,7 +23,7 @@ def load_images(image_folder):
     
     return image_data
 
-def draw_images(arr_3d, ncols=None, ratio=1, titles=None, axis='off', cmap='gray_r'):
+def draw_images(arr_3d, ncols=None, ratio=1, titles=None, axis="off", cmap="gray_r", show="on", save="off"):
     
     nimages = arr_3d.shape[0]
     ncols = nimages if ncols is None else ncols
@@ -43,12 +43,22 @@ def draw_images(arr_3d, ncols=None, ratio=1, titles=None, axis='off', cmap='gray
             axs[index].imshow(arr_3d[index], cmap=cmap)
             if titles is not None:
                 axs[index].set_title(titles[index])
-            if axis == 'off':
-                axs[index].axis('off')
-            elif axis == 'on':
-                axs[index].axis('on')
+            if axis == "off":
+                axs[index].axis("off")
+            elif axis == "on":
+                axs[index].axis("on")
         else:
-            axs[index].axis('off')
-
+            axs[index].axis("off")
+    
     plt.tight_layout()
-    plt.show()
+    
+    # 이미지 보기 여부 옵션 추가
+    if show == "on":
+        plt.show()
+    elif show == "off":
+        pass
+    
+    # 이미지 저장 기능 추가
+    if save != "off":
+        plt.savefig(save, bbox_inches="tight", pad_inches=0)
+        print(f"이미지가 {save} 파일로 저장되었습니다.")
