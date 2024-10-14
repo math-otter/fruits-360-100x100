@@ -1,6 +1,7 @@
 # 이미지를 3차원 넘파이 배열로 로드할 때 사용할 모듈
 import numpy as np
 from PIL import Image
+import matplotlib.pyplot as plt
 import os
 
 def load_images(image_folder):
@@ -21,3 +22,33 @@ def load_images(image_folder):
     image_data = (255 - image_data) / 255 # 넘파이 배열을 반전하고 정규화
     
     return image_data
+
+def draw_images(arr_3d, ncols=None, ratio=1, titles=None, axis='off', cmap='gray_r'):
+    
+    nimages = arr_3d.shape[0]
+    ncols = nimages if ncols is None else ncols
+    nrows = int(np.ceil(nimages / ncols))
+
+    fig, axs = plt.subplots(nrows, ncols, figsize=(ncols * ratio, nrows * ratio))
+
+    if nrows == 1 and ncols == 1:
+        axs = np.array([axs])
+    elif nrows == 1 or ncols == 1:
+        axs = axs.flatten()
+    else:
+        axs = axs.flatten()
+
+    for index in range(nrows * ncols):
+        if index < nimages:
+            axs[index].imshow(arr_3d[index], cmap=cmap)
+            if titles is not None:
+                axs[index].set_title(titles[index])
+            if axis == 'off':
+                axs[index].axis('off')
+            elif axis == 'on':
+                axs[index].axis('on')
+        else:
+            axs[index].axis('off')
+
+    plt.tight_layout()
+    plt.show()
