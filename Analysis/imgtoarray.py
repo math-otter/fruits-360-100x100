@@ -23,8 +23,9 @@ def load_images(image_folder):
     
     return image_data
 
-def draw_images(arr_3d, ncols=None, ratio=1, titles=None, axis="off", cmap="gray_r", show="on", save="off"):
+def draw_images(arr_3d, ncols=None, ratio=1, titles=None, axis="off", cmap="gray_r", show="off", save="off"):
     
+    # 한꺼번에 출력될 이미지들의 배치 방법과 크기 결정
     nimages = arr_3d.shape[0]
     ncols = nimages if ncols is None else ncols
     nrows = int(np.ceil(nimages / ncols))
@@ -37,7 +38,8 @@ def draw_images(arr_3d, ncols=None, ratio=1, titles=None, axis="off", cmap="gray
         axs = axs.flatten()
     else:
         axs = axs.flatten()
-
+		
+	# 개별 이미지의 타이틀, 좌표축 설정 기능
     for index in range(nrows * ncols):
         if index < nimages:
             axs[index].imshow(arr_3d[index], cmap=cmap)
@@ -50,15 +52,16 @@ def draw_images(arr_3d, ncols=None, ratio=1, titles=None, axis="off", cmap="gray
         else:
             axs[index].axis("off")
     
+    # 이미지 사이의 여백을 없애고 타이트하게 만들기
     plt.tight_layout()
     
-    # 이미지 보기 여부 옵션 추가
+    # 코드 실행 후 이미지 보기 여부 옵션
     if show == "on":
         plt.show()
     elif show == "off":
         pass
     
-    # 이미지 저장 기능 추가
+    # 이미지 저장 기능
     if save != "off":
-        plt.savefig(save, bbox_inches="tight", pad_inches=0)
-        print(f"이미지가 {save}.png 파일로 저장되었습니다.")
+        plt.savefig(save, bbox_inches="tight")
+        print(f"{arr_3d.shape[0]}개의 이미지가 {save}.png 파일로 저장되었습니다.")
