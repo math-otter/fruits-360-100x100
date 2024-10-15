@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 from imgtoarray import load_images, draw_images
 
 # 데이터 로드
-apple = load_images("Training\Apple Braeburn 1")
-banana = load_images("Training\Banana 1")
-cherry = load_images("Training\Cherry 1")
+apple = load_images("Training\Apple Red 1") # 492장
+banana = load_images("Training\Banana 1") # 490장
+cherry = load_images("Training\Cherry 1") # 492장
 
 # 각 과일 이미지들의 픽셀 평균 계산
 apple_means = np.mean(apple, axis=(1, 2))
@@ -44,4 +44,4 @@ fruit = np.concatenate((apple, banana, cherry), axis=0)
 mean = np.mean(fruit, axis=(1, 2))
 inf, sup = df["banana_means"].min(), df["banana_means"].max()
 banana1 = fruit[(mean >= inf) & (mean <= sup)]
-draw_images(banana1, ncols=50, show="off", save=r"Images\1_banana1")
+draw_images(banana1, ncols=50, save=r"Images\1_banana1")
