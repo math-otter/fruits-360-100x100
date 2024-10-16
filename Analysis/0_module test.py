@@ -8,4 +8,4 @@ for fruit in apple, banana, cherry:
     print(fruit.shape[0])
 
 sample_fruit = np.concatenate((apple[0:1], banana[0:1], cherry[0:1]), axis=0)
-draw_images(sample_fruit, ratio=3, titles=["apple", "banana", "cherry"], axis="on", save=r"Images\0_sample")
+draw_images(sample_fruit, ratio=3, titles=["apple", "banana", "cherry"], axis="on", cmap="gray", save=r"Images\0_sample")
