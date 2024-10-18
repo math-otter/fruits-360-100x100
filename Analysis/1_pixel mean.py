@@ -39,7 +39,7 @@ plt.savefig(r"Images\1_pixel mean histogram")
 # 픽셀의 평균값 만으로 바나나를 구별해낼 수 있음을 확인.
 # 사과와 체리는 비슷하여 분포에서 겹치는 부분이 존재함.
 
-# 픽셀의 평균값을 이용하여 모든 이미지에서 바나나만 골라내기
+# 픽셀의 평균값 범위를 이용하여 모든 이미지에서 바나나만 골라내기
 fruit = np.concatenate((apple, banana, cherry), axis=0)
 mean = np.mean(fruit, axis=(1, 2))
 inf, sup = df["banana_means"].min(), df["banana_means"].max()
