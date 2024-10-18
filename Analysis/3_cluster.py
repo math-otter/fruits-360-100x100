@@ -31,6 +31,6 @@ draw_images(centroids_and_means,
             save=r"Images\3_centroids and means")
 
 # 군집 분석 결과 시각화
-draw_images(fruit[km.labels_ == 0], ncols=50, save=r"Images\3_fruit with cent_0")
-draw_images(fruit[km.labels_ == 1], ncols=50, save=r"Images\3_fruit with cent_1")
-draw_images(fruit[km.labels_ == 2], ncols=50, save=r"Images\3_fruit with cent_2")
+draw_images(fruit[km.labels_ == 0], ncols=25, save=r"Images\3_fruit with cent_0")
+draw_images(fruit[km.labels_ == 1], ncols=25, save=r"Images\3_fruit with cent_1")
+draw_images(fruit[km.labels_ == 2], ncols=25, save=r"Images\3_fruit with cent_2")
