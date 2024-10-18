@@ -54,3 +54,10 @@ draw_images(pca.components_.reshape(-1, 100, 100),
             ratio=2,
             titles=[f"pc{n + 1}({evr[n]:.2%})" for n in range(len(evr))],
             save=r"Images/5_principal components.png")
+
+# 차원축소와 복원
+fruit_pca = pca.transform(fruit.reshape(-1, 100*100))
+fruit_inverse = pca.inverse_transform(fruit_pca)
+print(fruit.shape)
+print(fruit_pca.shape)
+print(fruit_inverse.shape)
